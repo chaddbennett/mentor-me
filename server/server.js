@@ -56,6 +56,7 @@ var lex = LEX.create({
       });
     }
   },
+
   letsencrypt: LE.create(
     // options
     { configDir: './letsencrypt/etc'
@@ -69,9 +70,13 @@ var lex = LEX.create({
     , renewalPath: LE.renewalPath
     , accountsDir: LE.accountsDir
 
-    , debug: false
-  }
+    // handlers
+  , { setChallenge: LEX.setChallenge
+    , removeChallenge: LEX.removeChallenge
+    }
+  )
 
+    , debug: false
 });
 
 lex.onRequest = app;
