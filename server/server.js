@@ -55,29 +55,9 @@ var lex = LEX.create({
       , agreeTos: true
       });
     }
-  },
-
-  letsencrypt: LE.create(
-    // options
-    { configDir: './letsencrypt/etc'
-    , manual: true
-
-    , server: LE.productionServerUrl
-    , privkeyPath: LE.privkeyPath
-    , fullchainPath: LE.fullchainPath
-    , certPath: LE.certPath
-    , chainPath: LE.chainPath
-    , renewalPath: LE.renewalPath
-    , accountsDir: LE.accountsDir
-
-    // handlers
-  , { setChallenge: LEX.setChallenge
-    , removeChallenge: LEX.removeChallenge
-    }
-  )
-
-    , debug: false
+  }
 });
+
 
 lex.onRequest = app;
 
