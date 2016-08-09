@@ -20,6 +20,9 @@ var socketIo      = require('socket.io');
 
 var server        = http.createServer(app);
 var io            = socketIo(server);
+var https         = require('spdy');
+var LE = require('letsencrypt');
+var LEX = require('letsencrypt-express')
 
 
 // Utilities
@@ -38,8 +41,6 @@ app.use('/api', learnerRoutes);
 app.use('/api', authRoutes);
 
 
-var LEX = require('letsencrypt-express')
-
 // Change these two lines!
 var DOMAIN = 'getmentor.me';
 var EMAIL = 'chadd.d.bennett@gmail.com';
@@ -54,7 +55,23 @@ var lex = LEX.create({
       , agreeTos: true
       });
     }
+  },
+  letsencrypt: LE.create(
+    // options
+    { configDir: './letsencrypt/etc'
+    , manual: true
+
+    , server: LE.productionServerUrl
+    , privkeyPath: LE.privkeyPath
+    , fullchainPath: LE.fullchainPath
+    , certPath: LE.certPath
+    , chainPath: LE.chainPath
+    , renewalPath: LE.renewalPath
+    , accountsDir: LE.accountsDir
+
+    , debug: false
   }
+
 });
 
 lex.onRequest = app;
@@ -63,6 +80,11 @@ lex.listen([80], [443, 3000], function () {
   var protocol = ('requestCert' in this) ? 'https': 'http';
   console.log("Listening at " + protocol + '://localhost:' + this.address().port);
 });
+
+http.createServer(LEX.createAcmeResponder(lex, function (req, res) {
+  res.setHeader('Location', 'https://' + req.headers.host + req.url);
+  res.end('<!-- Hello Mr Developer! Please use HTTPS instead -->');
+}));
 
 
 app.get('*', function (request, response){
