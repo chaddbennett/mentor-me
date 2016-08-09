@@ -5,8 +5,8 @@ var axios = require('axios');
 var userId = Math.floor(Math.random() * 50) + 1
 var mentorId = Math.floor(Math.random() * 4) + 1
 
-// buildLearnerUser(10)
-// buildMentorUser(3)
+// buildLearnerUser(1)
+// buildMentorUser(1)
 // buildAppointmentData(5)
 // buildReviewData(5)
 
@@ -30,10 +30,12 @@ function getMentorDummyObj() {
       firstname      : faker.Name.firstNameFemale(),
       lastname       : faker.Name.lastName(),
       email          : faker.Internet.email(),
-      password       : faker.Internet.userName(),
+      password       : "asdfasdf",
       role           : 1,
-      skills         : faker.Lorem.words(),
-      preferences    : {
+      skills         : ["processing", "C++"],
+      zip            : "04967",
+      description    : "Etiam at risus et justo dignissim congue. Donec congue lacinia dui, a porttitor lectus condimentum laoreet. Nunc",
+      qualities    : {
           visual     : true,
           academic   : false,
           remote     : true,
@@ -44,6 +46,7 @@ function getMentorDummyObj() {
 
 };
 
+
 function getLearnerDummyObj() {
 
   var learnerUser = {
@@ -51,9 +54,10 @@ function getLearnerDummyObj() {
         firstname      : faker.Name.firstNameFemale(),
         lastname       : faker.Name.lastName(),
         email          : faker.Internet.email(),
-        password       : faker.Internet.userName(),
+        password       : "asdfasdf",
         role           : 2,
-        skills         : faker.Lorem.words(),
+        skills         : ["processing", "C++"],
+        zip            : "04967",
         preferences    : {
             visual     : true,
             academic   : false,

@@ -9,7 +9,8 @@
     "webpack": "./node_modules/webpack/bin/webpack.js",
     "dev": "node ./node_modules/webpack-dev-server/bin/webpack-dev-server.js",
     "sass": "gulp run",
-    "start": "nodemon ./server/server.js"
+    "start": "nodemon ./server/server.js",
+    "postinstall": "./node_modules/webpack/bin/webpack.js"
   },
 
   "precommit": [
