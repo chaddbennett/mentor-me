@@ -64,15 +64,13 @@ lex.listen([80], [443, 3000], function () {
 });
 
 
-
-
 app.get('*', function (request, response){
   response.sendFile(path.resolve(__dirname, '../', 'index.html'));
 });
 
 
-app.set('port', 3000);
-server.listen(app.get('port'), function() {
-  // db.ensureSchema();
-  console.log(moment().format('h:mm:ss a') + ': Express Server listening on port', app.get('port'));
-});
+// app.set('port', 3000);
+// server.listen(app.get('port'), function() {
+//   // db.ensureSchema();
+//   console.log(moment().format('h:mm:ss a') + ': Express Server listening on port', app.get('port'));
+// });
