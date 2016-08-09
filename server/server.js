@@ -38,7 +38,7 @@ app.use('/api', learnerRoutes);
 app.use('/api', authRoutes);
 
 
-var LEX = require('letsencrypt-express').testing();
+var LEX = require('letsencrypt-express')
 
 // Change these two lines!
 var DOMAIN = 'getmentor.me';
@@ -56,9 +56,6 @@ var lex = LEX.create({
     }
   }
 });
-
-
-
 
 lex.onRequest = app;
 
