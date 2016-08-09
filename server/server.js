@@ -22,7 +22,7 @@ var server        = http.createServer(app);
 var io            = socketIo(server);
 var https         = require('spdy');
 var LE = require('letsencrypt');
-var LEX = require('letsencrypt-express')
+var LEX = require('letsencrypt-express').testing();
 
 
 // Utilities
