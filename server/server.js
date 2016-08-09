@@ -17,7 +17,7 @@ var session       = require('express-session');
 var config        = require('./config/config');
 // sockets
 var socketIo      = require('socket.io');
-var server        = http.createServer(app);
+// var server        = http.createServer(app);
 var io            = socketIo(server);
 
 
@@ -35,6 +35,34 @@ app.use(express.static('./'));
 app.use('/api', mentorsRoutes);
 app.use('/api', learnerRoutes);
 app.use('/api', authRoutes);
+
+
+var LEX = require('letsencrypt-express').testing();
+
+// Change these two lines!
+var DOMAIN = 'getmentor.me';
+var EMAIL = 'chadd.d.bennett@gmail.com';
+
+var lex = LEX.create({
+  configDir: require('os').homedir() + '/letsencrypt/etc'
+, approveRegistration: function (hostname, approve) { // leave `null` to disable automatic registration
+    if (hostname === DOMAIN) { // Or check a database or list of allowed domains
+      approve(null, {
+        domains: [DOMAIN]
+      , email: EMAIL
+      , agreeTos: true
+      });
+    }
+  }
+});
+
+lex.onRequest = app;
+
+lex.listen([80], [443, 3000], function () {
+  var protocol = ('requestCert' in this) ? 'https': 'http';
+  console.log("Listening at " + protocol + '://localhost:' + this.address().port);
+});
+
 
 
 
