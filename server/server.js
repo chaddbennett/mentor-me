@@ -17,7 +17,8 @@ var session       = require('express-session');
 var config        = require('./config/config');
 // sockets
 var socketIo      = require('socket.io');
-// var server        = http.createServer(app);
+
+var server        = http.createServer(app);
 var io            = socketIo(server);
 
 
@@ -55,6 +56,9 @@ var lex = LEX.create({
     }
   }
 });
+
+
+
 
 lex.onRequest = app;
 
