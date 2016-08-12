@@ -11,10 +11,6 @@ export const CLEAR_MENTOR = 'clear_mentor';
 /* MENTORS */
 export const MENTOR_FETCH_REVIEWS = 'mentor_fetch_reviews';
 
-/* API/APPOINTMENTS */
-export const CREATE_APPOINTMENT = 'create_appoinment';
-export const FETCH_APPOINTMENTS = 'fetch_appointments';
-
 /* API/REVIEWS */
 export const SUBMIT_REVIEW = 'submit_review';
 export const CURRENT_MENTOR_REVIEWS = 'current_mentor_reviews';
